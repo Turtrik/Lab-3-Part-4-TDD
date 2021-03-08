@@ -29,10 +29,6 @@ def test_CanCalculateTotalPurePrice(invoice, products):
     invoice.totalPurePrice(products)
     assert invoice.totalPurePrice(products) == 69.38
 
-def test_properInputs(invoice, monkeypatch):
-    monkeypatch.setattr('builtins.input', lambda _: "3")
-    unit_price = invoice.inputNumber("Input 3: ")
-    assert unit_price == 3
 
 def test_improperInputs(invoice, monkeypatch):
         inputs = iter(['n', '3'])
