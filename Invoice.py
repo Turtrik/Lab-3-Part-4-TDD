@@ -21,7 +21,7 @@ class Invoice:
 
     # Calculates the total discount from all items in products
     def totalDiscount(self, products):
-        total_discount = 0;
+        total_discount = 0
 
         for k, v in products.items():
             total_discount += (float(v['discount']) * float(v['unit_price']) * int(v['qnt'])) / 100
