@@ -14,6 +14,20 @@ def invoice():
     invoice = Invoice()
     return invoice
 
+@pytest.fixture()
+def qnt():
+    qnt = 'qnt'
+    return qnt
+
+@pytest.fixture()
+def price():
+    price = 'price'
+    return price
+
+@pytest.fixture()
+def discount():
+    discount = 'discount'
+    return discount
 
 def test_CanCalculateTotalImpurePrice(products):
     invoice = Invoice()
@@ -31,7 +45,13 @@ def test_CanCalculateTotalPurePrice(invoice, products):
 
 
 def test_improperInputs(invoice, monkeypatch):
-        inputs = iter(['n', '3'])
-        monkeypatch.setattr('builtins.input', lambda _: next(inputs))
-        unit_price = invoice.inputNumber("Input a non-number: ")
-        assert unit_price == 3
+    inputs = iter(['n', '3'])
+    monkeypatch.setattr('builtins.input', lambda _: next(inputs))
+    unit_price = invoice.inputNumber("Input a non-number: ")
+    assert unit_price == 3
+        
+def test_isProductAdded(invoice, qnt, price, discount):
+    invoice.addProduct(qnt, price, discount)
+    assert qnt == qnt
+    assert price == price
+    assert discount == discount
