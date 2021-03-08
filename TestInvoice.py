@@ -35,3 +35,9 @@ def test_improperInputs(invoice, monkeypatch):
         monkeypatch.setattr('builtins.input', lambda _: next(inputs))
         unit_price = invoice.inputNumber("Input a non-number: ")
         assert unit_price == 3
+        
+def test_isProductAdded(invoice,qnt,price,discount):
+    invoice.addProduct(qnt,price,discount)
+    assert invoice.addProduct(qnt) == 2
+    assert invoice.addProduct(price) == unit_price
+    assert invoice.addProduct(discount) == 5.62
